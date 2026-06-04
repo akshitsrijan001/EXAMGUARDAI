@@ -1,0 +1,85 @@
+[2026-06-03 19:11:19] VIOLATION: Multiple Faces Detected
+File: backend/evidence/multiple_faces/multiple_faces_20260603_191119.jpg
+Severity: HIGH
+Status: Logged
+
+[2026-06-04 13:43:33] VIOLATION: Multiple Faces Detected
+File: backend/evidence/multiple_faces/multiple_faces_20260604_134333.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 18:20:59] VIOLATION: Multiple Faces Detected
+File: backend/evidence/multiple_faces/multiple_faces_20260604_182059.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 18:56:58] VIOLATION: Multiple Faces Detected
+File: backend/evidence/multiple_faces/multiple_faces_20260604_185658.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 18:58:15] VIOLATION: No Face Detected
+File: backend/evidence/no_face/no_face_20260604_185815.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 19:09:58] VIOLATION: No Face Detected
+File: backend/evidence/no_face/no_face_20260604_190958.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 19:59:47] VIOLATION: No Face Detected
+File: backend/evidence/no_face/no_face_20260604_195947.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 20:39:55] VIOLATION: No Face Detected
+File: backend/evidence/no_face/no_face_20260604_203955.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 20:46:27] VIOLATION: No Face Detected
+File: backend/evidence/no_face/no_face_20260604_204627.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 21:40:56] VIOLATION: Multiple Faces Detected
+File: backend/evidence/multiple_faces/multiple_faces_20260604_214056.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 21:42:18] VIOLATION: No Face Detected
+File: backend/evidence/no_face/no_face_20260604_214218.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 22:50:28] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260604_225028.png
+Severity: High
+Status: Logged
+
+[2026-06-04 22:50:40] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260604_225040.png
+Severity: High
+Status: Logged
+
+[2026-06-04 22:50:58] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260604_225057.png
+Severity: High
+Status: Logged
+
+[2026-06-04 23:10:45] VIOLATION: Multiple Faces Detected
+File: backend/evidence/multiple_faces/multiple_faces_20260604_231045.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 23:11:03] VIOLATION: No Face Detected
+File: backend/evidence/no_face/no_face_20260604_231103.jpg
+Severity: High
+Status: Logged
+
+[2026-06-04 23:14:44] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260604_231443.png
+Severity: High
+Status: Logged
+

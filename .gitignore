@@ -1,0 +1,21 @@
+# Evidence screenshots
+
+backend/evidence/multiple_faces/*.jpg
+backend/evidence/no_face/*.jpg
+backend/evidence/tab_switch/*.png
+backend/evidence/tab_switch/*.jpg
+
+# Python cache
+
+**pycache**/
+*.pyc
+
+# Virtual environment
+
+venv/
+.env
+
+# VS Code
+
+.vscode/settings.json
+temp.jpg
