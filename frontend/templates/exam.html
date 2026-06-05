@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ExamGuard AI - Examination</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/exam.css') }}">
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="container">
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+
+        <h1>EXAMGUARD AI</h1>
+
+        <div class="timer" id="timer">
+            60:00
+        </div>
+
+    </div>
+
+    <!-- MAIN LAYOUT -->
+
+    <div class="exam-layout">
+
+        <!-- QUESTION AREA -->
+
+        <div class="question-card">
+
+            <div class="question-header" id="questionNumber">
+                Question 1 of 10
+            </div>
+
+            <h2 id="questionText">
+                Which protocol provides reliable transport in TCP/IP?
+            </h2>
+
+            <div class="options" id="optionsContainer">
+
+                <label class="option">
+                    <input type="radio" name="answer">
+                    TCP
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="answer">
+                    UDP
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="answer">
+                    ICMP
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="answer">
+                    ARP
+                </label>
+
+            </div>
+
+            <div class="navigation">
+
+                <button id="prevBtn" class="secondary-btn">
+                    Previous
+                </button>
+
+                <button id="reviewBtn" class="review-btn">
+                    Mark For Review
+                </button>
+
+                <button id="nextBtn" class="primary-btn">
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+
+        <div class="status-panel">
+
+            <h3>Monitoring Status</h3>
+
+            <div class="status-item">
+                <span class="dot"></span>
+                Face Detection Active
+            </div>
+
+            <div class="status-item">
+                <span class="dot"></span>
+                Tab Monitoring Active
+            </div>
+
+            <div class="status-item">
+                <span class="dot"></span>
+                Evidence Logging Active
+            </div>
+
+            <div class="status-item">
+                <span class="dot"></span>
+                Candidate Verified
+            </div>
+
+            <!-- CAMERA -->
+
+<div class="camera-box">
+
+    <h4>Camera Feed</h4>
+
+    <video
+        id="webcam"
+        autoplay
+        muted
+        playsinline>
+    </video>
+
+    <div class="camera-stats">
+
+       <p id="faceCount">
+    Faces Detected : 0
+</p>
+
+<p id="violationCount">
+    Violations : 0
+</p>
+
+    </div>
+
+</div>
+            
+
+            <!-- QUESTION PALETTE -->
+
+            <div class="palette">
+
+                <h4>Question Palette</h4>
+
+                <div class="palette-grid">
+
+                    <button class="q-btn active">1</button>
+                    <button class="q-btn">2</button>
+                    <button class="q-btn">3</button>
+                    <button class="q-btn">4</button>
+                    <button class="q-btn">5</button>
+
+                    <button class="q-btn">6</button>
+                    <button class="q-btn">7</button>
+                    <button class="q-btn">8</button>
+                    <button class="q-btn">9</button>
+                    <button class="q-btn">10</button>
+
+                </div>
+
+            </div>
+
+            <!-- LEGEND -->
+
+            <div class="legend">
+
+                <h4>Status Legend</h4>
+
+                <div class="legend-item">
+                    <span class="legend-box notvisited"></span>
+                    Not Visited
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-box unanswered"></span>
+                    Unanswered
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-box answered"></span>
+                    Answered
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-box review"></span>
+                    Marked Review
+                </div>
+
+            </div>
+
+            <!-- SUBMIT -->
+
+            <button id="submitBtn" class="submit-btn">
+                Submit Exam
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- PROGRESS -->
+
+    <div class="progress-section">
+
+        <div class="progress-bar">
+
+            <div class="progress-fill"></div>
+
+        </div>
+
+        <p id="progressText">
+            10% Completed
+        </p>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/exam.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ExamGuard AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="container">
+
+    <div class="left-panel">
+
+        <h1>EXAMGUARD AI</h1>
+
+        <h2>Next Generation AI Proctoring Platform</h2>
+
+        <p class="tagline">
+            SECURE • SMART • PROCTORED
+        </p>
+
+        <div class="divider"></div>
+
+        <div class="stats">
+
+            <div class="stat-box">
+                <h3>99.8%</h3>
+                <p>Detection Accuracy</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>4</h3>
+                <p>AI Modules</p>
+            </div>
+
+        </div>
+
+        <h3 class="status-heading">
+            Monitoring Engine Status
+        </h3>
+
+        <div class="status-card">
+
+            <div class="status">
+                <span class="dot"></span>
+                Face Recognition Ready
+            </div>
+
+            <div class="status">
+                <span class="dot"></span>
+                Multi Face Detection Active
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="right-panel">
+
+        <div class="clock" id="clock"></div>
+
+        <div class="glass-card">
+
+            <h2>Candidate Login</h2>
+
+            <form action="/instructions">
+
+                <input
+                    type="text"
+                    placeholder="Full Name"
+                    required
+                >
+
+                <input
+                    type="text"
+                    placeholder="Registration Number"
+                    required
+                >
+
+                <button type="submit">
+                    Continue →
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="particle p1"></div>
+<div class="particle p2"></div>
+<div class="particle p3"></div>
+
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+</html>

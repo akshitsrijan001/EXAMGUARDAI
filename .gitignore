@@ -20,3 +20,20 @@ venv/
 .vscode/settings.json
 temp.jpg
 dataset/Srijan/
+# ExamGuard runtime files
+backend/monitor_data.json
+
+# Evidence screenshots
+evidence/*.jpg
+evidence/*.png
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Flask cache
+instance/
+
+# OS files
+.DS_Store
+Thumbs.db

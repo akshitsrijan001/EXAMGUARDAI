@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Exam Instructions</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/instructions.css') }}">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Exam Instructions</h1>
+
+        <p class="subtitle">
+            Please read all instructions carefully before starting the examination.
+        </p>
+
+        <div class="rules">
+
+            <div class="rule">
+                ✅ Face must remain visible throughout the examination.
+            </div>
+
+            <div class="rule">
+                ✅ Only one candidate should be present in front of the camera.
+            </div>
+
+            <div class="rule">
+                ✅ Switching tabs or opening new windows will be recorded.
+            </div>
+
+            <div class="rule">
+                ✅ All suspicious activities are logged automatically.
+            </div>
+
+            <div class="rule">
+                ✅ Ensure stable internet connection before proceeding.
+            </div>
+
+            <div class="rule">
+                ✅ Do not refresh or close the browser during the exam.
+            </div>
+
+        </div>
+
+        <div class="status-box">
+
+            <div class="status">
+                <span class="dot"></span>
+                Face Recognition Active
+            </div>
+
+            <div class="status">
+                <span class="dot"></span>
+                Tab Monitoring Active
+            </div>
+
+        </div>
+
+        <button id="startExamBtn">
+    Start Examination →
+</button>
+
+    </div>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/instructions.js') }}"></script>
+</body>
+
+</html>
