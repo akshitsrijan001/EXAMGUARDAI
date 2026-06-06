@@ -1,28 +1,15 @@
 const webcam = document.getElementById("webcam");
 
-async function startWebcam() {
-
-    try {
-
-        const stream =
-            await navigator.mediaDevices.getUserMedia({
-                video:true,
-                audio:false
-            });
-
-        webcam.srcObject = stream;
-
-    }
-
-    catch(error){
-
-        console.log(error);
-
-        alert("Camera access denied.");
-    }
+// Backend handles camera
+ function startCamera() {
+      console.log("Backend face detection active");
 }
 
-startWebcam();
+startCamera();
+
+    
+
+
 // TIMER
 let violations = 0;
 let minutes = 60;
@@ -160,7 +147,7 @@ const paletteButtons =
 document.querySelectorAll(".q-btn");
 
 const submitBtn =
-document.querySelector(".submit-btn");
+document.getElementById("submitBtn");
 
 
 // LOAD QUESTION
@@ -386,7 +373,7 @@ document.addEventListener("visibilitychange", () => {
 
     if(document.hidden){
 
-       violations++;
+       violations = violations + 1;
 
 document.getElementById(
     "violationCount"
@@ -450,7 +437,7 @@ document.addEventListener("fullscreenchange", () => {
 
     if (!document.fullscreenElement) {
 
-        violations++;
+        violations = violations + 1;
 
         document.getElementById(
             "violationCount"
@@ -480,11 +467,16 @@ async function updateMonitorData() {
         ).innerText =
             "Faces Detected : " + data.faces;
 
-        document.getElementById(
-            "violationCount"
-        ).innerText =
-            "Violations : " + data.violations;
-            if (data.violations >= 5) {
+        //document.getElementById(
+          //  "violationCount"
+       // ).innerText =
+         //   "Violations : " + data.violations;
+           // violations = data.violations;
+          if (data.faces === 0) {
+    console.log("No Face Detected");
+}
+
+if (data.violations >= 20) {
 
     alert(
         "Maximum violations exceeded.\nExam will be submitted automatically."
@@ -492,6 +484,7 @@ async function updateMonitorData() {
 
     window.location.href = "/result";
 }
+
 
     }
 

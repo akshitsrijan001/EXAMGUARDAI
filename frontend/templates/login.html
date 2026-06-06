@@ -2,103 +2,148 @@
 <html>
 
 <head>
+
     <title>ExamGuard AI</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/login.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/login.css') }}"
+    >
+
 </head>
 
 <body>
 
-<div class="background"></div>
+    <div class="background"></div>
 
-<div class="container">
+    <div class="container">
 
-    <div class="left-panel">
+        <div class="left-panel">
 
-        <h1>EXAMGUARD AI</h1>
+            <h1>EXAMGUARD AI</h1>
 
-        <h2>Next Generation AI Proctoring Platform</h2>
+            <h3 id="typing"></h3>
 
-        <p class="tagline">
-            SECURE • SMART • PROCTORED
-        </p>
+            <p class="tagline">
+                SMART • SECURE • PROCTORED
+            </p>
 
-        <div class="divider"></div>
+            <div class="divider"></div>
 
-        <div class="stats">
+            <div class="stats">
 
-            <div class="stat-box">
-                <h3>99.8%</h3>
-                <p>Detection Accuracy</p>
+                <div class="stat-box">
+                    <h3>99.9%</h3>
+                    <p>Detection Accuracy</p>
+                </div>
+
+                <div class="stat-box">
+                    <h3>24/7</h3>
+                    <p>AI Models</p>
+                </div>
+
             </div>
 
-            <div class="stat-box">
-                <h3>4</h3>
-                <p>AI Modules</p>
+            <div class="status-heading">
+                <h3>Monitoring Status</h3>
+            </div>
+
+            <div class="status-card">
+
+                <div class="status-item">
+                    <span class="dot"></span>
+                    <span>Face Recognition Ready</span>
+                </div>
+
+                <div class="status-item">
+                    <span class="dot"></span>
+                    <span>AI Face Detection Active</span>
+                </div>
+
             </div>
 
         </div>
 
-        <h3 class="status-heading">
-            Monitoring Engine Status
-        </h3>
+        <div class="right-panel">
 
-        <div class="status-card">
+            <div class="clock" id="clock"></div>
 
-            <div class="status">
-                <span class="dot"></span>
-                Face Recognition Ready
-            </div>
+            <div class="glass-card">
 
-            <div class="status">
-                <span class="dot"></span>
-                Multi Face Detection Active
+                <h2>Candidate Login</h2>
+
+                <form id="loginForm">
+
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        placeholder="Registration Number"
+                        required
+                    >
+
+                    <button type="submit">
+                        Verify Identity
+                    </button>
+
+                </form>
+
             </div>
 
         </div>
 
     </div>
 
-    <div class="right-panel">
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
 
-        <div class="clock" id="clock"></div>
+    <script>
 
-        <div class="glass-card">
+        document.getElementById("loginForm").addEventListener(
+            "submit",
+            async function(event){
 
-            <h2>Candidate Login</h2>
+                event.preventDefault();
 
-            <form action="/instructions">
+                alert("Verifying Candidate...");
 
-                <input
-                    type="text"
-                    placeholder="Full Name"
-                    required
-                >
+                try{
 
-                <input
-                    type="text"
-                    placeholder="Registration Number"
-                    required
-                >
+                    const response = await fetch("/verify");
+                    const result = await response.json();
 
-                <button type="submit">
-                    Continue →
-                </button>
+                    if(result.status === "success"){
 
-            </form>
+                        alert("Identity Verified");
 
-        </div>
+                        window.location.href = "/instructions";
 
-    </div>
+                    }else{
 
-</div>
+                        alert("Verification Failed");
 
-<div class="particle p1"></div>
-<div class="particle p2"></div>
-<div class="particle p3"></div>
+                    }
 
-<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+                }catch(error){
+
+                    console.log(error);
+
+                    alert("Verification Error");
+
+                }
+
+            }
+        );
+
+    </script>
+
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 
 </body>
+
 </html>
