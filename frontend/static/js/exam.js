@@ -467,16 +467,17 @@ async function updateMonitorData() {
         ).innerText =
             "Faces Detected : " + data.faces;
 
-        //document.getElementById(
-          //  "violationCount"
-       // ).innerText =
-         //   "Violations : " + data.violations;
-           // violations = data.violations;
-          if (data.faces === 0) {
-    console.log("No Face Detected");
+        document.getElementById(
+            "violationCount"
+        ).innerText =
+            "Violations : " + data.violations;
+            violations = data.violations;
+
+        if (data.faces === 0) {
+            console.log("No Face Detected");
 }
 
-if (data.violations >= 20) {
+if (data.violations >= 25) {
 
     alert(
         "Maximum violations exceeded.\nExam will be submitted automatically."

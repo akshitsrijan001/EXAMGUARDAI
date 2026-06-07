@@ -10,23 +10,45 @@ face_cascade = cv2.CascadeClassifier(
     "haarcascade_frontalface_default.xml"
 )
 
-# Path to monitor_data.json
+# Paths
+BASE_DIR = os.path.dirname(__file__)
+
 MONITOR_FILE = os.path.join(
-    os.path.dirname(__file__),
+    BASE_DIR,
     "monitor_data.json"
 )
 
-# Create evidence folder
-os.makedirs("evidence", exist_ok=True)
+EVIDENCE_DIR = os.path.join(
+    BASE_DIR,
+    "evidence"
+)
 
-# Open webcam
+MULTIPLE_FACE_DIR = os.path.join(
+    EVIDENCE_DIR,
+    "multiple_faces"
+)
+
+NO_FACE_DIR = os.path.join(
+    EVIDENCE_DIR,
+    "no_face"
+)
+
+os.makedirs(EVIDENCE_DIR, exist_ok=True)
+os.makedirs(MULTIPLE_FACE_DIR, exist_ok=True)
+os.makedirs(NO_FACE_DIR, exist_ok=True)
+
+# Webcam
 cap = cv2.VideoCapture(0)
 
+# State variables
 last_capture_time = 0
 last_state = None
 no_face_start = None
 
-# Reset counters on startup
+status_text = "STARTING..."
+color = (255, 255, 255)
+
+# Reset counters
 monitor_state.violation_count = 0
 monitor_state.face_count = 0
 
@@ -35,6 +57,7 @@ while True:
     success, frame = cap.read()
 
     if not success:
+        print("Failed to read camera frame")
         break
 
     gray = cv2.cvtColor(
@@ -44,9 +67,9 @@ while True:
 
     faces = face_cascade.detectMultiScale(
         gray,
-        scaleFactor=1.15,
+        scaleFactor=1.1,
         minNeighbors=5,
-        minSize=(100, 100)
+        minSize=(80, 80)
     )
 
     face_count = len(faces)
@@ -55,9 +78,9 @@ while True:
         f"Faces: {face_count}  Violations: {monitor_state.violation_count}"
     )
 
-    # -----------------------
-    # FACE STATUS
-    # -----------------------
+    # ===================================
+    # FACE STATUS LOGIC
+    # ===================================
 
     if face_count == 1:
 
@@ -83,14 +106,18 @@ while True:
 
             if current_time - last_capture_time > 5:
 
-                filename = (
-                    f"evidence/multiple_faces_{int(current_time)}.jpg"
+                filename = os.path.join(
+                    MULTIPLE_FACE_DIR,
+                    f"multiple_faces_{int(current_time)}.jpg"
                 )
 
-                cv2.imwrite(
+                result = cv2.imwrite(
                     filename,
                     frame
                 )
+
+                print("SAVE RESULT:", result)
+                print("SAVED:", filename)
 
                 last_capture_time = current_time
 
@@ -100,6 +127,7 @@ while True:
         color = (0, 0, 255)
 
         if no_face_start is None:
+
             no_face_start = time.time()
 
         elif time.time() - no_face_start >= 3:
@@ -113,22 +141,26 @@ while True:
 
                 if current_time - last_capture_time > 5:
 
-                    filename = (
-                        f"evidence/no_face_{int(current_time)}.jpg"
+                    filename = os.path.join(
+                        NO_FACE_DIR,
+                        f"no_face_{int(current_time)}.jpg"
                     )
 
-                    cv2.imwrite(
+                    result = cv2.imwrite(
                         filename,
                         frame
                     )
+
+                    print("SAVE RESULT:", result)
+                    print("SAVED:", filename)
 
                     last_capture_time = current_time
 
     monitor_state.face_count = face_count
 
-    # -----------------------
+    # ===================================
     # SAVE DATA FOR FLASK
-    # -----------------------
+    # ===================================
 
     data = {
         "faces": face_count,
@@ -138,9 +170,9 @@ while True:
     with open(MONITOR_FILE, "w") as f:
         json.dump(data, f)
 
-    # -----------------------
-    # DISPLAY STATUS
-    # -----------------------
+    # ===================================
+    # DISPLAY
+    # ===================================
 
     cv2.putText(
         frame,

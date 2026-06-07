@@ -1,13 +1,128 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Result</title>
+
+    <title>ExamGuard AI - Result</title>
+
+    <style>
+
+        body{
+            background:#04183f;
+            color:white;
+            font-family:Arial;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+        }
+
+        .container{
+            width:800px;
+            background:#1f2c4d;
+            padding:40px;
+            border-radius:20px;
+        }
+
+        h1{
+            text-align:center;
+            color:#4CAF50;
+        }
+
+        h2{
+            color:#6fa3ff;
+        }
+
+        .card{
+            background:#2d3e63;
+            padding:25px;
+            border-radius:15px;
+            margin-top:25px;
+        }
+
+        .row{
+            display:flex;
+            justify-content:space-between;
+            margin:15px 0;
+            font-size:24px;
+        }
+
+        .btn{
+            margin-top:30px;
+            width:100%;
+            padding:18px;
+            border:none;
+            border-radius:12px;
+            background:#3266e8;
+            color:white;
+            font-size:24px;
+            cursor:pointer;
+        }
+
+    </style>
+
 </head>
+
 <body>
+
+<div class="container">
 
     <h1>Exam Submitted Successfully</h1>
 
-    <p>Thank you for using ExamGuard AI.</p>
+    <div class="card">
+
+        <h2>Candidate Summary</h2>
+
+        <div class="row">
+            <span>Candidate</span>
+            <span>Srijan Akshit</span>
+        </div>
+
+        <div class="row">
+            <span>Exam</span>
+            <span>Online Assessment</span>
+        </div>
+
+        <div class="row">
+            <span>Status</span>
+            <span>Completed</span>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>AI Monitoring Report</h2>
+
+        <div class="row">
+            <span>Final Face Count</span>
+            <span>{{ faces }}</span>
+        </div>
+
+        <div class="row">
+            <span>Total Violations</span>
+            <span>{{ violations }}</span>
+        </div>
+
+        <div class="row">
+            <span>Evidence Captured</span>
+            <span>{{ evidence_count }}</span>
+        </div>
+
+    </div>
+
+    <h2 style="text-align:center;color:#4CAF50;">
+        Monitoring Report Generated Successfully
+    </h2>
+
+    <button
+        class="btn"
+        onclick="window.location.href='/'"
+    >
+        Return To Login
+    </button>
+
+</div>
 
 </body>
 </html>

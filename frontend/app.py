@@ -1,10 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 import subprocess
 import os
 import json
-import subprocess
 import sys
-from flask import Response
 import cv2
 
 # Base directory of frontend
@@ -24,14 +22,16 @@ app = Flask(
 @app.route("/")
 def login():
     return render_template("login.html")
+
+
 @app.route("/verify")
 def verify():
 
     result = subprocess.run(
-    [sys.executable, "backend/verify_candidate.py"],
-    capture_output=True,
-    text=True
-)
+        [sys.executable, "backend/verify_candidate.py"],
+        capture_output=True,
+        text=True
+    )
 
     print("STDOUT:")
     print(result.stdout)
@@ -57,14 +57,9 @@ def exam():
 
 @app.route("/result")
 def result():
-    return render_template("result.html")
-
-
-@app.route("/monitor")
-def monitor():
 
     monitor_file = os.path.join(
-        os.path.dirname(os.path.dirname(__file__)),
+        os.path.dirname(BASE_DIR),
         "backend",
         "monitor_data.json"
     )
@@ -73,15 +68,72 @@ def monitor():
         with open(monitor_file, "r") as f:
             data = json.load(f)
 
-        return data
+        faces = data.get("faces", 0)
+        violations = data.get("violations", 0)
+
     except Exception as e:
+        print("Error reading monitor_data.json:", e)
+
+        faces = 0
+        violations = 0
+
+    evidence_folder = os.path.join(
+        os.path.dirname(BASE_DIR),
+        "backend",
+        "evidence"
+    )
+
+    evidence_count = 0
+
+    if os.path.exists(evidence_folder):
+
+        for root, dirs, files in os.walk(evidence_folder):
+
+            evidence_count += len([
+                file
+                for file in files
+                if file.endswith(".jpg")
+            ])
+
+    print("RESULT PAGE")
+    print("Monitor file:", monitor_file)
+    print("Faces:", faces)
+    print("Violations:", violations)
+    print("Evidence:", evidence_count)
+
+    return render_template(
+        "result.html",
+        faces=faces,
+        violations=violations,
+        evidence_count=evidence_count
+    )
+
+
+@app.route("/monitor")
+def monitor():
+
+    monitor_file = os.path.join(
+        os.path.dirname(BASE_DIR),
+        "backend",
+        "monitor_data.json"
+    )
+
+    try:
+
+        with open(monitor_file, "r") as f:
+            data = json.load(f)
+
+        return data
+
+    except Exception as e:
+
         print(f"Error reading monitor_data.json: {e}")
 
-    return {
-        "faces": 0,
-        "violations": 0,
-        "error": str(e)
-    }
+        return {
+            "faces": 0,
+            "violations": 0,
+            "error": str(e)
+        }
 
 
 @app.route("/video_feed")
@@ -107,11 +159,13 @@ def video_feed():
                 + b"\r\n"
             )
 
+        cap.release()
+
     return Response(
         generate(),
         mimetype="multipart/x-mixed-replace; boundary=frame"
     )
-    
+
 
 if __name__ == "__main__":
 
@@ -123,4 +177,3 @@ if __name__ == "__main__":
         port=5000,
         debug=False
     )
-    
