@@ -1,3 +1,5 @@
+                                                                                                        ExamGuard AI – Intelligent Online Examination Proctoring System
+
 # ExamGuard AI
 
 AI-powered online examination proctoring system designed to monitor candidates during online assessments and detect suspicious behavior in real time.
@@ -36,6 +38,8 @@ AI-powered online examination proctoring system designed to monitor candidates d
 * Maintains a running count of suspicious events.
 * Displays live violation statistics.
 * Tab switching detection during examination.
+
+
 
 ### Real-Time Monitoring Dashboard
 
@@ -93,11 +97,17 @@ ExamGuardAI/
 │
 ├── backend/
 │   ├── face_detection.py
+<<<<<<< HEAD
 │   ├── face_recognition.py
 │   ├── verify_candidate.py
 │   ├── monitor_state.py
 │   ├── monitor_data.json
 │   ├── violation_log.txt
+=======
+│   ├── verify_candidate.py
+│   ├── face_recognition.py
+│   ├── monitor_data.json
+>>>>>>> 9428432 (Added PDF report generation)
 │   └── evidence/
 │
 ├── frontend/
@@ -118,6 +128,7 @@ ExamGuardAI/
 ```
 
 ---
+<<<<<<< HEAD
 
 ## How to Run
 
@@ -168,6 +179,34 @@ http://127.0.0.1:5000
 ✅ Online Examination Interface Implemented
 
 ✅ Monitoring Report Generation Implemented
+=======
+
+## How to Run
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/akshitsrijan01/EXAMGUARDAI.git
+```
+
+### 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Start Application
+
+```bash
+python frontend/app.py
+```
+
+### 4. Open Browser
+
+```text
+http://127.0.0.1:5000
+```
+>>>>>>> 9428432 (Added PDF report generation)
 
 ---
 
@@ -181,12 +220,15 @@ http://127.0.0.1:5000
 * Deployment on cloud platforms
 
 ---
+<<<<<<< HEAD
 
 ## Disclaimer
 
 This project is developed for educational and demonstration purposes. It is not intended for production deployment without additional security, scalability, and privacy enhancements.
 
 ---
+=======
+>>>>>>> 9428432 (Added PDF report generation)
 
 ## Author
 
@@ -196,9 +238,6 @@ ExamGuard AI – Intelligent Online Examination Proctoring System
 
 ---
 
-## License
-
-This project is developed for educational and research purposes.
 
 ---
 

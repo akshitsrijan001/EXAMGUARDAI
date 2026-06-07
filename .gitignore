@@ -37,3 +37,10 @@ instance/
 # OS files
 .DS_Store
 Thumbs.db
+# Generated reports
+*.pdf
+frontend/exam_report.pdf
+exam_report.pdf
+*.pdf
+backend/evidence/*.jpg
+backend/evidence/**/*.jpg

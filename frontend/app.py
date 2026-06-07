@@ -1,9 +1,11 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, send_file
 import subprocess
 import os
 import json
 import sys
 import cv2
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet
 
 # Base directory of frontend
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -165,7 +167,81 @@ def video_feed():
         generate(),
         mimetype="multipart/x-mixed-replace; boundary=frame"
     )
+@app.route("/download_report")
+def download_report():
 
+    monitor_file = os.path.join(
+         os.path.dirname(BASE_DIR),
+        "backend",
+        "monitor_data.json"
+    )
+
+    try:
+        with open(monitor_file, "r") as f:
+            data = json.load(f)
+
+        faces = data.get("faces", 0)
+        violations = data.get("violations", 0)
+
+    except:
+        faces = 0
+        violations = 0
+
+    evidence_folder = os.path.join(
+        os.path.dirname(BASE_DIR),
+        "backend",
+        "evidence"
+    )
+
+    evidence_count = 0
+
+    if os.path.exists(evidence_folder):
+
+        for root, dirs, files in os.walk(evidence_folder):
+            evidence_count += len(
+                [f for f in files if f.endswith(".jpg")]
+            )
+
+    pdf_file = os.path.join(BASE_DIR, "exam_report.pdf")
+
+    doc = SimpleDocTemplate(pdf_file)
+
+    styles = getSampleStyleSheet()
+
+    content = [
+
+        Paragraph("ExamGuard AI Monitoring Report",
+                  styles["Title"]),
+
+        Spacer(1, 20),
+
+        Paragraph("Candidate: Srijan Akshit",
+                  styles["Normal"]),
+
+        Paragraph(f"Final Face Count: {faces}",
+                  styles["Normal"]),
+
+        Paragraph(f"Total Violations: {violations}",
+                  styles["Normal"]),
+
+        Paragraph(f"Evidence Captured: {evidence_count}",
+                  styles["Normal"]),
+
+        Spacer(1, 20),
+
+        Paragraph("Report Generated Successfully",
+                  styles["Heading2"])
+
+    ]
+    print("PDF Faces =", faces)
+    print("PDF Violations =", violations)
+    print("PDF Evidence =", evidence_count)
+    doc.build(content)
+
+    return send_file(
+        pdf_file,
+        as_attachment=True
+    )
 
 if __name__ == "__main__":
 
