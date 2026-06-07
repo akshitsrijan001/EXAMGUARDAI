@@ -1,4 +1,4 @@
-                                                                                                        ExamGuard AI – Intelligent Online Examination Proctoring System
+                                                              ExamGuard AI
 
 # ExamGuard AI
 
@@ -39,15 +39,13 @@ AI-powered online examination proctoring system designed to monitor candidates d
 * Displays live violation statistics.
 * Tab switching detection during examination.
 
-
-
 ### Real-Time Monitoring Dashboard
 
-* Displays:
+Displays:
 
-  * Faces detected
-  * Violation count
-  * Monitoring status
+* Faces detected
+* Violation count
+* Monitoring status
 
 ### Online Examination Module
 
@@ -59,12 +57,19 @@ AI-powered online examination proctoring system designed to monitor candidates d
 
 ### Monitoring Report
 
-* Generates final examination report.
-* Displays:
+Generates final examination report.
 
-  * Final face count
-  * Total violations
-  * Evidence captured
+Displays:
+
+* Final face count
+* Total violations
+* Evidence captured
+
+### PDF Report Generation
+
+* Generates downloadable PDF examination reports.
+* Includes candidate information and monitoring statistics.
+* Supports evidence count and violation summary.
 
 ---
 
@@ -76,6 +81,7 @@ AI-powered online examination proctoring system designed to monitor candidates d
 * Flask
 * OpenCV
 * Haar Cascade Face Detection
+* ReportLab
 
 ### Frontend
 
@@ -97,17 +103,11 @@ ExamGuardAI/
 │
 ├── backend/
 │   ├── face_detection.py
-<<<<<<< HEAD
 │   ├── face_recognition.py
 │   ├── verify_candidate.py
 │   ├── monitor_state.py
 │   ├── monitor_data.json
 │   ├── violation_log.txt
-=======
-│   ├── verify_candidate.py
-│   ├── face_recognition.py
-│   ├── monitor_data.json
->>>>>>> 9428432 (Added PDF report generation)
 │   └── evidence/
 │
 ├── frontend/
@@ -125,35 +125,6 @@ ExamGuardAI/
 ├── dataset/
 ├── requirements.txt
 └── README.md
-```
-
----
-<<<<<<< HEAD
-
-## How to Run
-
-### 1. Clone Repository
-
-```bash
-git clone https://github.com/akshitsrijan01/EXAMGUARDAI.git
-```
-
-### 2. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Start Application
-
-```bash
-python frontend/app.py
-```
-
-### 4. Open Browser
-
-```text
-http://127.0.0.1:5000
 ```
 
 ---
@@ -179,7 +150,10 @@ http://127.0.0.1:5000
 ✅ Online Examination Interface Implemented
 
 ✅ Monitoring Report Generation Implemented
-=======
+
+✅ PDF Report Generation Implemented
+
+---
 
 ## How to Run
 
@@ -206,29 +180,21 @@ python frontend/app.py
 ```text
 http://127.0.0.1:5000
 ```
->>>>>>> 9428432 (Added PDF report generation)
 
 ---
 
 ## Future Improvements
 
-* PDF report generation
 * Database integration
 * Advanced face recognition models
 * Eye gaze tracking
-* Tab-switch monitoring enhancements
+* Improved candidate analytics
 * Deployment on cloud platforms
+* Admin dashboard
+* Enhanced PDF reporting
+* Multi-user support
 
 ---
-<<<<<<< HEAD
-
-## Disclaimer
-
-This project is developed for educational and demonstration purposes. It is not intended for production deployment without additional security, scalability, and privacy enhancements.
-
----
-=======
->>>>>>> 9428432 (Added PDF report generation)
 
 ## Author
 
@@ -238,6 +204,15 @@ ExamGuard AI – Intelligent Online Examination Proctoring System
 
 ---
 
+## License
+
+This project is developed for educational and research purposes.
+
+---
+
+## Disclaimer
+
+This project is developed for educational and demonstration purposes. It is not intended for production deployment without additional security, scalability, and privacy enhancements.
 
 ---
 
