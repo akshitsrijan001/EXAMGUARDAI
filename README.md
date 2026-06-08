@@ -1,4 +1,4 @@
-                                                                                                                                                                            #ExamGuard AI
+                                                                                     #ExamGuard AI
 
 **ExamGuard AI** is an AI-powered online examination proctoring system designed to monitor candidates during online assessments and detect suspicious behavior in real time. The system combines face verification, webcam monitoring, violation detection, evidence collection, reporting, and administrative oversight into a single platform.
 
