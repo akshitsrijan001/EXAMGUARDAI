@@ -106,10 +106,11 @@ class TabSwitchDetector:
                         print(
                             f"[ALERT] Tab Switch -> {title}"
                         )
-
                         self.violation_logged = True
+                        return "VIOLATION"
+                        
 
-                    return True
+                    return False
 
                 return False
 

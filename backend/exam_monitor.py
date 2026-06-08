@@ -3,6 +3,8 @@ import cv2
 import time
 import winsound
 from deepface import DeepFace
+import json
+import os
 
 # -------------------------------
 # Face Detector
@@ -28,6 +30,23 @@ violation_screenshot_taken = False
 alert_beep_played = False
 no_face_start_time = None
 no_face_violation_logged = False
+violation_count = 0
+
+
+def update_monitor_data(face_count, violations):
+
+    with open(
+        "backend/monitor_data.json",
+        "w"
+    ) as f:
+
+        json.dump(
+            {
+                "faces": face_count,
+                "violations": violations
+            },
+            f
+        )
 
 # -------------------------------
 # Webcam
@@ -41,7 +60,11 @@ while True:
 
     if not success:
         break
-    tab_detector.check_window_focus()
+
+    result = tab_detector.check_window_focus()
+
+    if result == "VIOLATION":
+        violation_count += 1
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -117,6 +140,7 @@ while True:
                     )
 
                 no_face_violation_logged = True
+                violation_count += 1
 
     # =====================================
     # CASE 2 : MULTIPLE FACES
@@ -177,6 +201,7 @@ while True:
                     )
 
                     violation_screenshot_taken = True
+                    violation_count += 1
 
                     with open(
                         "backend/evidence/violation_log.txt",
@@ -291,7 +316,7 @@ while True:
                     255
                 )
 
-    # =====================================
+           # =====================================
     # DISPLAY STATUS
     # =====================================
 
@@ -323,6 +348,11 @@ while True:
         0.8,
         (255, 255, 255),
         2
+    )
+
+    update_monitor_data(
+        face_count,
+        violation_count
     )
 
     cv2.imshow(

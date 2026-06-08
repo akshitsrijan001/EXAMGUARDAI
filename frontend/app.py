@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response, send_file
+from flask import Flask, render_template, Response, send_file, redirect
 import subprocess
 import os
 import json
@@ -6,6 +6,18 @@ import sys
 import cv2
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
+import sys
+import os
+
+sys.path.append(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
+
+from backend.database import (
+    init_db,
+    save_report,
+    get_all_reports
+)
 
 # Base directory of frontend
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -19,7 +31,7 @@ app = Flask(
     template_folder=os.path.join(BASE_DIR, "templates"),
     static_folder=os.path.join(BASE_DIR, "static")
 )
-
+init_db()
 
 @app.route("/")
 def login():
@@ -69,6 +81,7 @@ def result():
     try:
         with open(monitor_file, "r") as f:
             data = json.load(f)
+            print(data)
 
         faces = data.get("faces", 0)
         violations = data.get("violations", 0)
@@ -103,12 +116,61 @@ def result():
     print("Violations:", violations)
     print("Evidence:", evidence_count)
 
+ #   save_report(
+  # "Srijan Akshit",
+  # faces,
+  #  violations,
+  #  evidence_count
+#)
+   
     return render_template(
         "result.html",
         faces=faces,
         violations=violations,
         evidence_count=evidence_count
     )
+@app.route("/submit_exam")
+def submit_exam():
+
+    monitor_file = os.path.join(
+        os.path.dirname(BASE_DIR),
+        "backend",
+        "monitor_data.json"
+    )
+
+    with open(monitor_file, "r") as f:
+        data = json.load(f)
+
+    faces = data.get("faces", 0)
+    violations = data.get("violations", 0)
+
+    evidence_folder = os.path.join(
+        os.path.dirname(BASE_DIR),
+        "backend",
+        "evidence"
+    )
+
+    evidence_count = 0
+
+    if os.path.exists(evidence_folder):
+
+        for root, dirs, files in os.walk(evidence_folder):
+
+            evidence_count += len([
+                file
+                for file in files
+                if file.endswith(".jpg")
+                or file.endswith(".png")
+            ])
+
+    save_report(
+        "Srijan Akshit",
+        faces,
+        violations,
+        evidence_count
+    )
+
+    return redirect("/result")
 
 
 @app.route("/monitor")
@@ -236,18 +298,34 @@ def download_report():
     print("PDF Faces =", faces)
     print("PDF Violations =", violations)
     print("PDF Evidence =", evidence_count)
+    save_report(
+    "Srijan Akshit",
+    faces,
+    violations,
+    evidence_count
+)
     doc.build(content)
 
     return send_file(
         pdf_file,
         as_attachment=True
     )
+    print("ADMIN ROUTE LOADED")
+
+@app.route("/admin")
+def admin():
+    reports = get_all_reports()
+
+    return render_template(
+        "admin.html",
+        reports=reports
+    )
 
 if __name__ == "__main__":
 
     print("Templates Path:", os.path.join(BASE_DIR, "templates"))
     print("Static Path:", os.path.join(BASE_DIR, "static"))
-
+    print(app.url_map)
     app.run(
         host="0.0.0.0",
         port=5000,

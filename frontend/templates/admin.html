@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>ExamGuard AI - Admin Dashboard</title>
+
+    <style>
+
+        body{
+            background:#04183f;
+            color:white;
+            font-family:Arial;
+            padding:40px;
+        }
+
+        h1{
+            text-align:center;
+            color:#4CAF50;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:30px;
+            background:#1f2c4d;
+        }
+
+        th,td{
+            padding:15px;
+            border:1px solid #4a5f91;
+            text-align:center;
+        }
+
+        th{
+            background:#3266e8;
+        }
+
+        tr:nth-child(even){
+            background:#2d3e63;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<h1>ExamGuard AI Admin Dashboard</h1>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Candidate</th>
+        <th>Face Count</th>
+        <th>Violations</th>
+        <th>Evidence</th>
+        <th>Timestamp</th>
+    </tr>
+
+    {% for report in reports %}
+
+    <tr>
+        <td>{{ report[0] }}</td>
+        <td>{{ report[1] }}</td>
+        <td>{{ report[2] }}</td>
+        <td>{{ report[3] }}</td>
+        <td>{{ report[4] }}</td>
+        <td>{{ report[5] }}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
