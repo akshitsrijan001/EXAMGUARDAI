@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<title>ExamGuard Evidence Viewer</title>
+
+<style>
+
+body{
+    background:#04183f;
+    color:white;
+    font-family:Arial;
+    padding:30px;
+}
+
+h1{
+    text-align:center;
+    color:#4CAF50;
+    margin-bottom:30px;
+}
+
+.gallery{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fill,minmax(300px,1fr));
+
+    gap:20px;
+}
+
+.card{
+
+    background:#1f2c4d;
+
+    padding:10px;
+
+    border-radius:10px;
+}
+
+.card img{
+
+    width:100%;
+    border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Captured Evidence</h1>
+
+<div class="gallery">
+
+{% for image in images %}
+
+<div class="card">
+
+<img src="{{ url_for('evidence_image', filename=image) }}">
+
+<p>{{ image }}</p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

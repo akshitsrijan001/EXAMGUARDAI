@@ -6,8 +6,10 @@ import sys
 import cv2
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
+from flask import send_from_directory
 import sys
 import os
+import app
 
 sys.path.append(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,17 +22,33 @@ from backend.database import (
 )
 
 # Base directory of frontend
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__)
+    )
+)
 
 print("BASE_DIR =", BASE_DIR)
-print("TEMPLATES EXISTS =", os.path.exists(os.path.join(BASE_DIR, "templates")))
-print("LOGIN EXISTS =", os.path.exists(os.path.join(BASE_DIR, "templates", "login.html")))
+print(
+    "TEMPLATES EXISTS =",
+    os.path.exists(
+        os.path.join(BASE_DIR, "frontend", "templates")
+    )
+)
+
+print(
+    "LOGIN EXISTS =",
+    os.path.exists(
+        os.path.join(BASE_DIR, "frontend", "templates", "login.html")
+    )
+)
 
 app = Flask(
     __name__,
-    template_folder=os.path.join(BASE_DIR, "templates"),
-    static_folder=os.path.join(BASE_DIR, "static")
+    template_folder=os.path.join(BASE_DIR, "frontend", "templates"),
+    static_folder=os.path.join(BASE_DIR, "frontend", "static")
 )
+print("Template folder =", app.template_folder)
 init_db()
 
 @app.route("/")
@@ -228,6 +246,55 @@ def video_feed():
     return Response(
         generate(),
         mimetype="multipart/x-mixed-replace; boundary=frame"
+    )
+@app.route("/evidence")
+def evidence():
+
+        evidence_folder = os.path.join(
+            BASE_DIR,
+            "backend",
+            "evidence"
+        )
+        print("BASE_DIR =", BASE_DIR)
+        print("EVIDENCE FOLDER =", evidence_folder)
+        print("EXISTS =", os.path.exists(evidence_folder))
+        
+        images = []
+
+        for root, dirs, files in os.walk(evidence_folder):
+
+         for file in files:
+
+            if file.lower().endswith((".jpg", ".jpeg", ".png")):
+
+                rel_path = os.path.relpath(
+                    os.path.join(root, file),
+                    evidence_folder
+                )
+
+                images.append(rel_path)
+
+        images = images[-3:]
+
+        print("TOTAL IMAGES =", len(images))
+        print(images)
+
+        return render_template(
+        "evidence.html",
+        images=images
+    )
+@app.route("/evidence/<path:filename>")
+def evidence_image(filename):
+
+    evidence_folder = os.path.join(
+        BASE_DIR,
+        "backend",
+        "evidence"
+    )
+
+    return send_from_directory(
+        evidence_folder,
+        filename
     )
 @app.route("/download_report")
 def download_report():

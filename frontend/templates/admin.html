@@ -1,76 +1,399 @@
 <!DOCTYPE html>
+
 <html>
 <head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <title>ExamGuard AI - Admin Dashboard</title>
+<title>ExamGuard AI - Admin Dashboard</title>
 
-    <style>
+<style>
 
-        body{
-            background:#04183f;
-            color:white;
-            font-family:Arial;
-            padding:40px;
-        }
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+    }
 
-        h1{
-            text-align:center;
-            color:#4CAF50;
-        }
+    body{
+        background:#04183f;
+        color:white;
+        padding:30px;
+    }
 
-        table{
-            width:100%;
-            border-collapse:collapse;
-            margin-top:30px;
-            background:#1f2c4d;
-        }
+    h1{
+        text-align:center;
+        color:#4CAF50;
+        margin-bottom:25px;
+    }
 
-        th,td{
-            padding:15px;
-            border:1px solid #4a5f91;
-            text-align:center;
-        }
+    .stats{
+        display:flex;
+        justify-content:center;
+        gap:20px;
+        margin-bottom:30px;
+        flex-wrap:wrap;
+    }
 
-        th{
-            background:#3266e8;
-        }
+    .card{
+        background:#1f2c4d;
+        padding:20px;
+        width:220px;
+        border-radius:12px;
+        text-align:center;
+        box-shadow:0px 4px 15px rgba(0,0,0,0.3);
+    }
 
-        tr:nth-child(even){
-            background:#2d3e63;
-        }
+    .card h2{
+        color:#4CAF50;
+        margin-bottom:10px;
+    }
 
-    </style>
+    .card p{
+        font-size:28px;
+        font-weight:bold;
+    }
 
+    #searchInput{
+        width:100%;
+        padding:12px;
+        border:none;
+        border-radius:8px;
+        margin-bottom:20px;
+        font-size:16px;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+        background:#1f2c4d;
+        border-radius:10px;
+        overflow:hidden;
+    }
+
+    th{
+        background:#3266e8;
+        padding:15px;
+    }
+
+    td{
+        padding:15px;
+        border-bottom:1px solid #4a5f91;
+        text-align:center;
+    }
+
+    tr:hover{
+        background:#31466f;
+    }
+   .chart-box{
+    width:850px;
+    max-width:95%;
+    margin:30px auto;
+    padding:25px;
+    background:#1f2c4d;
+    border-radius:15px;
+    box-shadow:0px 4px 15px rgba(0,0,0,0.3);
+}
+
+.chart-box h2{
+    text-align:center;
+    color:#4CAF50;
+    margin-bottom:20px;
+}
+
+.chart-container{
+    width:100%;
+    height:350px;
+}
+
+
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
 <h1>ExamGuard AI Admin Dashboard</h1>
 
-<table>
+<div class="stats">
 
-    <tr>
-        <th>ID</th>
-        <th>Candidate</th>
-        <th>Face Count</th>
-        <th>Violations</th>
-        <th>Evidence</th>
-        <th>Timestamp</th>
-    </tr>
+    <div class="card">
+        <h2>Total Reports</h2>
+        <p>{{ reports|length }}</p>
+    </div>
 
-    {% for report in reports %}
+    <div class="card">
+        <h2>AI Monitoring Status</h2>
+        <p>Active</p>
+    </div>
 
-    <tr>
-        <td>{{ report[0] }}</td>
-        <td>{{ report[1] }}</td>
-        <td>{{ report[2] }}</td>
-        <td>{{ report[3] }}</td>
-        <td>{{ report[4] }}</td>
-        <td>{{ report[5] }}</td>
-    </tr>
+    <div class="card">
+        <h2>Total Violations</h2>
 
-    {% endfor %}
+        <p>
+        {% for report in reports %}
+            {{ report[3] }}
+        {% endfor %}
+        </p>
+
+    </div>
+
+</div>
+
+<input
+ type="text"
+ id="searchInput"
+ placeholder="Search Candidate"
+ onkeyup="searchTable()"
+>
+<div class="chart-box">
+
+    <h2>Violation Analytics</h2>
+
+    <div class="chart-container">
+        <canvas id="violationChart"></canvas>
+    </div>
+
+</div>
+<div class="chart-box">
+
+    <h2>Risk Distribution</h2>
+
+    <div class="chart-container">
+        <canvas id="riskChart"></canvas>
+    </div>
+
+</div>
+<table id="reportTable">
+
+
+<tr>
+    <th>ID</th>
+    <th>Candidate</th>
+    <th>Face Count</th>
+    <th>Violations</th>
+    <th>Risk Level</th>
+    <th>Evidence</th>
+    <th>Timestamp</th>
+</tr>
+
+{% for report in reports %}
+
+<tr>
+    <td>{{ report[0] }}</td>
+    <td>{{ report[1] }}</td>
+    <td>{{ report[2] }}</td>
+    <td>{{ report[3] }}</td>
+
+    <td>
+
+    {% if report[3] <= 1 %}
+        <span style="color:#4CAF50;font-weight:bold;">
+            🟢 Low
+        </span>
+
+    {% elif report[3] <= 4 %}
+        <span style="color:#FFC107;font-weight:bold;">
+            🟡 Medium
+        </span>
+
+    {% else %}
+        <span style="color:#F44336;font-weight:bold;">
+            🔴 High
+        </span>
+
+    {% endif %}
+
+    </td>
+
+    <td>
+
+<a
+href="/evidence"
+style="
+color:#4CAF50;
+font-weight:bold;
+text-decoration:none;
+">
+
+View ({{ report[4] }})
+
+</a>
+
+</td>
+    <td>{{ report[5] }}</td>
+
+</tr>
+
+{% endfor %}
+
 
 </table>
 
+<script>
+
+function searchTable(){
+
+    let input =
+        document.getElementById(
+            "searchInput"
+        ).value.toLowerCase();
+
+    let table =
+        document.getElementById(
+            "reportTable"
+        );
+
+    let rows =
+        table.getElementsByTagName(
+            "tr"
+        );
+
+    for(let i=1;i<rows.length;i++){
+
+        let candidate =
+            rows[i]
+            .getElementsByTagName("td")[1];
+
+        if(candidate){
+
+            let text =
+                candidate.textContent
+                .toLowerCase();
+
+            rows[i].style.display =
+                text.includes(input)
+                ? ""
+                : "none";
+        }
+    }
+}
+
+</script>
+<script>
+
+
+
+
+new Chart(
+document.getElementById("violationChart"),
+{
+    type:"bar",
+
+    data:{
+        labels:["Srijan Akshit"],
+
+        datasets:[{
+            label:"Violation Count",
+            data:[0],
+
+            backgroundColor:"#4CAF50",
+            borderColor:"#81C784",
+            borderWidth:2,
+            borderRadius:12,
+            barThickness:80
+        }],
+    },
+    
+
+    options:{
+
+        responsive:true,
+        maintainAspectRatio:false,
+
+        plugins:{
+            legend:{
+                labels:{
+                    color:"white"
+                }
+            }
+        },
+
+        scales:{
+
+            x:{
+                ticks:{
+                    color:"white"
+                },
+
+                grid:{
+                    color:"rgba(255,255,255,0.1)"
+                }
+            },
+
+            y:{
+                beginAtZero:true,
+
+                ticks:{
+                    color:"white",
+                    stepSize:1
+                },
+
+                grid:{
+                    color:"rgba(255,255,255,0.1)"
+                }
+            }
+        }
+    }
+}
+);
+new Chart(
+document.getElementById("riskChart"),
+{
+    type:"doughnut",
+
+    data:{
+        labels:[
+            "Low Risk",
+            "Medium Risk",
+            "High Risk"
+        ],
+
+        datasets:[{
+            data:[
+                1,
+                0,
+                0
+            ],
+
+            backgroundColor:[
+                "#4CAF50",
+                "#FFC107",
+                "#F44336"
+            ],
+
+            borderColor:"#1f2c4d",
+            borderWidth:2
+        }]
+    },
+
+    options:{
+
+        responsive:true,
+        maintainAspectRatio:false,
+
+        plugins:{
+            legend:{
+                labels:{
+                    color:"white"
+                }
+            }
+        }
+    }
+}
+);
+</script>
+<footer style="
+    margin-top:40px;
+    text-align:center;
+    color:#8aa0d4;
+    font-size:14px;
+    border-top:1px solid #2d3e63;
+    padding-top:20px;
+">
+    <p>ExamGuard AI v1.0</p>
+    <p>Developed by Srijan Akshit</p>
+</footer>
 </body>
 </html>
