@@ -7,6 +7,7 @@ import cv2
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from flask import send_from_directory
+from flask import request
 import sys
 import os
 import app
@@ -195,10 +196,12 @@ def submit_exam():
 def monitor():
 
     monitor_file = os.path.join(
-        os.path.dirname(BASE_DIR),
+        BASE_DIR,
         "backend",
         "monitor_data.json"
     )
+    print("MONITOR FILE =", monitor_file)
+    print("EXISTS =", os.path.exists(monitor_file))
 
     try:
 
@@ -217,13 +220,38 @@ def monitor():
             "error": str(e)
         }
 
+@app.route("/update_violation", methods=["POST"])
+def update_violation():
+
+    data = request.get_json()
+
+    monitor_file = os.path.join(
+        BASE_DIR,
+        "backend",
+        "monitor_data.json"
+    )
+
+    try:
+        with open(monitor_file, "r") as f:
+            monitor_data = json.load(f)
+
+        monitor_data["violations"] = data["violations"]
+
+        with open(monitor_file, "w") as f:
+            json.dump(monitor_data, f)
+
+        return {"status": "ok"}
+
+    except Exception as e:
+        return {"error": str(e)}, 500
+
 
 @app.route("/video_feed")
 def video_feed():
 
     def generate():
 
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
         while True:
 

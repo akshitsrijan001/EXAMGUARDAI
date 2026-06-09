@@ -374,6 +374,15 @@ document.addEventListener("visibilitychange", () => {
     if(document.hidden){
 
        violations = violations + 1;
+       fetch("/update_violation", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        violations: violations
+    })
+});
 
 document.getElementById(
     "violationCount"

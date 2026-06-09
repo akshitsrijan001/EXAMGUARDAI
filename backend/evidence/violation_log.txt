@@ -208,3 +208,133 @@ File: backend/evidence/tab_switch/tab_switch_20260608_205506.png
 Severity: High
 Status: Logged
 
+[2026-06-09 17:48:47] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_174846.png
+Severity: High
+Status: Logged
+
+[2026-06-09 17:50:48] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_175045.png
+Severity: High
+Status: Logged
+
+[2026-06-09 17:51:10] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_175109.png
+Severity: High
+Status: Logged
+
+[2026-06-09 17:59:28] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_175928.png
+Severity: High
+Status: Logged
+
+[2026-06-09 17:59:59] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_175958.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:00:12] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_180011.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:01:05] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_180104.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:01:13] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_180112.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:01:20] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_180119.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:04:53] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_180453.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:05:07] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_180506.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:06:06] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_180605.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:08:34] VIOLATION: No Face Detected
+File: backend/evidence/no_face/no_face_20260609_180834.jpg
+Severity: High
+Status: Logged
+
+[2026-06-09 18:08:46] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_180846.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:09:26] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_180926.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:18:16] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_181816.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:18:21] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_181821.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:18:27] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_181827.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:18:34] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_181833.png
+Severity: High
+Status: Logged
+
+[2026-06-09 18:40:05] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_184004.png
+Severity: High
+Status: Logged
+
+[2026-06-09 19:21:34] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_192133.png
+Severity: High
+Status: Logged
+
+[2026-06-09 19:21:45] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_192144.png
+Severity: High
+Status: Logged
+
+[2026-06-09 19:21:53] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_192152.png
+Severity: High
+Status: Logged
+
+[2026-06-09 19:23:01] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_192301.png
+Severity: High
+Status: Logged
+
+[2026-06-09 19:23:09] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_192308.png
+Severity: High
+Status: Logged
+
+[2026-06-09 19:30:26] VIOLATION: Tab Switch Detected
+File: backend/evidence/tab_switch/tab_switch_20260609_193025.png
+Severity: High
+Status: Logged
+
