@@ -312,6 +312,28 @@ ExamGuardAI/
 
 ---
 
+## Screenshots
+
+### Login Page
+<img width="956" height="433" alt="image" src="https://github.com/user-attachments/assets/b6f65763-5d14-4ea0-9c4b-90314a73c6a7" />
+
+### Instructions Page
+<img width="529" height="431" alt="image" src="https://github.com/user-attachments/assets/ad3b8fca-90ca-46ba-b083-962885f22abf" />
+
+### Live Examination Interface
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/728a9a58-366c-42c6-bb49-3076e8edfcef" />
+
+
+### Admin Dashboard
+<img width="956" height="398" alt="image" src="https://github.com/user-attachments/assets/599e909f-a431-488f-b683-2b4719b0e2c2" />
+
+
+### Evidence Viewer
+<img width="950" height="153" alt="image" src="https://github.com/user-attachments/assets/43e9b9fd-13d6-49df-85f9-447ca6f9e6ab" />
+(ACTUAL IMAGES NOT ADDED DUE TO PRIVACY CONCERNS)
+
+---
+
 ## Future Enhancements
 
 Potential future improvements include:
