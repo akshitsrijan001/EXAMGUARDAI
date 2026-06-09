@@ -322,7 +322,7 @@ ExamGuardAI/
 
 ### Live Examination Interface
 <img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/728a9a58-366c-42c6-bb49-3076e8edfcef" />
-
+(ACTUAL IMAGES NOT ADDED DUE TO PRIVACY CONCERNS)
 
 ### Admin Dashboard
 <img width="956" height="398" alt="image" src="https://github.com/user-attachments/assets/599e909f-a431-488f-b683-2b4719b0e2c2" />
