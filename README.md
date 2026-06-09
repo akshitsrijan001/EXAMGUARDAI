@@ -1,126 +1,363 @@
-   ExamGuard AI
+                                                                  ExamGuard AI
 
-AI-powered online examination proctoring system that monitors candidates in real time and detects suspicious activities during online assessments.
+## AI-Powered Online Examination Proctoring System
+
+ExamGuard AI is an intelligent online examination proctoring system designed to monitor candidates during remote assessments and detect suspicious activities in real time. The project combines Computer Vision, Artificial Intelligence, real-time monitoring, evidence collection, analytics, and automated reporting into a unified platform.
+
+The system helps educational institutions and organizations conduct secure online examinations by automatically monitoring candidate behavior and generating evidence whenever suspicious activity is detected.
 
 ---
 
-## Features
+## Problem Statement
 
-### Candidate Verification
-- Face capture and verification before exam start
-- Prevents unauthorized candidates from taking exams
+Online examinations have become increasingly popular, but maintaining examination integrity remains a major challenge. Common issues include:
 
-### Live AI Monitoring
-- Real-time webcam monitoring
-- Continuous face detection using OpenCV
+- Candidate impersonation
+- Multiple people appearing during the exam
+- Candidates leaving the examination area
+- Switching tabs to search for answers
+- Lack of evidence for suspicious activities
 
-### Violation Detection
-- No Face Detection
-- Multiple Face Detection
-- Tab Switching Detection
+ExamGuard AI addresses these challenges through automated AI-powered monitoring and evidence collection.
 
-### Evidence Collection
-- Automatically captures screenshots when violations occur
-- Stores evidence for administrator review
+---
 
-### Risk Analysis Dashboard
-- Interactive Admin Dashboard
+## Project Objectives
+
+The primary objectives of this project are:
+
+- Verify candidate identity before examination.
+- Monitor candidates continuously during online exams.
+- Detect suspicious behavior automatically.
+- Capture evidence whenever violations occur.
+- Store examination records securely.
+- Provide administrators with a centralized dashboard.
+- Generate downloadable reports for review and auditing.
+
+---
+
+## Key Features
+
+### Candidate Verification System
+
+Before starting an examination, candidates must complete identity verification.
+
+Features:
+
+- Webcam-based face capture
+- Candidate registration and verification
+- Prevention of unauthorized exam access
+
+---
+
+### Real-Time AI Monitoring
+
+The system continuously monitors candidates using their webcam.
+
+Capabilities:
+
+- Live video feed processing
+- Face detection
+- Candidate presence monitoring
+- Real-time examination supervision
+
+---
+
+### No Face Detection
+
+The system detects when the candidate leaves the camera view.
+
+Detection Logic:
+
+- No face visible for a specified duration
+- Violation automatically recorded
+- Evidence captured
+
+Benefits:
+
+- Prevents candidates from leaving during examinations
+- Maintains examination integrity
+
+---
+
+### Multiple Face Detection
+
+The system identifies when more than one person is present.
+
+Detection Logic:
+
+- Counts faces in each frame
+- Triggers a violation if face count exceeds one
+
+Benefits:
+
+- Prevents collaboration during examinations
+- Detects unauthorized assistance
+
+---
+
+### Tab Switching Detection
+
+The system monitors whether the candidate leaves the examination tab.
+
+Detection Logic:
+
+- Browser visibility tracking
+- Tab focus monitoring
+- Automatic screenshot capture
+
+Benefits:
+
+- Prevents external searching during examinations
+- Detects suspicious navigation behavior
+
+---
+
+### Evidence Collection System
+
+Whenever a violation occurs, evidence is automatically generated.
+
+Evidence Includes:
+
+- Screenshots
+- Captured frames
+- Violation records
+
+Purpose:
+
+- Administrator review
+- Report generation
+- Audit trail creation
+
+---
+
+### Administrative Dashboard
+
+The administrator dashboard provides centralized monitoring and analytics.
+
+Features:
+
+- Candidate report listing
+- Search functionality
+- Violation statistics
+- Risk indicators
+- Evidence viewer
+- Interactive charts
+
+Dashboard Components:
+
+- Total Reports
+- Total Violations
+- AI Monitoring Status
 - Violation Analytics Chart
-- Risk Distribution Visualization
-- Candidate Search Functionality
+- Risk Distribution Chart
 
-### Reporting System
-- Automated PDF Report Generation
-- Candidate Activity Summary
-- Violation Statistics
+---
+
+### Analytics Visualization
+
+Interactive charts provide a visual representation of examination data.
+
+Implemented Using:
+
+- Chart.js
+
+Charts:
+
+- Violation Analytics Bar Chart
+- Risk Distribution Doughnut Chart
+
+Benefits:
+
+- Quick insights
+- Improved usability
+- Better decision-making
+
+---
+
+### PDF Report Generation
+
+The system generates downloadable PDF reports containing:
+
+- Candidate information
+- Face count
+- Violation count
+- Risk assessment
+- Examination summary
+
+Library Used:
+
+- ReportLab
+
+---
+
+## System Workflow
+
+```text
+Candidate Login
+       │
+       ▼
+Identity Verification
+       │
+       ▼
+Exam Instructions
+       │
+       ▼
+Start Examination
+       │
+       ▼
+Live Monitoring
+       │
+       ▼
+Violation Detection
+       │
+       ├── No Face Detection
+       ├── Multiple Face Detection
+       └── Tab Switch Detection
+       │
+       ▼
+Evidence Collection
+       │
+       ▼
+Database Storage
+       │
+       ▼
+Admin Dashboard
+       │
+       ▼
+PDF Report Generation
+```
 
 ---
 
 ## Technology Stack
 
 ### Frontend
-- HTML
-- CSS
+
+- HTML5
+- CSS3
 - JavaScript
 - Chart.js
 
 ### Backend
+
 - Python
 - Flask
 
 ### Computer Vision
+
 - OpenCV
 
 ### Database
+
 - SQLite
 
 ### Reporting
+
 - ReportLab
+
+### Additional Libraries
+
+- NumPy
+- JSON
+- OS
 
 ---
 
 ## Project Structure
 
-```
+```text
 ExamGuardAI/
 │
-├── frontend/
-│   ├── templates/
-│   ├── static/
-│   └── app.py
-│
 ├── backend/
+│   ├── database.py
 │   ├── face_detection.py
+│   ├── face_recognition.py
 │   ├── exam_monitor.py
 │   ├── verify_candidate.py
 │   └── evidence/
 │
+├── frontend/
+│   ├── templates/
+│   │   ├── login.html
+│   │   ├── instructions.html
+│   │   ├── exam.html
+│   │   ├── result.html
+│   │   ├── admin.html
+│   │   └── evidence.html
+│   │
+│   ├── static/
+│   │   ├── css/
+│   │   └── js/
+│   │
+│   └── app.py
+│
 ├── database/
 │
+├── examguard.db
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## Workflow
-
-1. Candidate Login
-2. Identity Verification
-3. Exam Instructions
-4. Live Exam Monitoring
-5. AI Violation Detection
-6. Evidence Capture
-7. Report Generation
-8. Admin Dashboard Review
-
----
-
 ## Detected Violations
 
-| Violation | Description |
-|------------|------------|
-| No Face | Candidate leaves camera view |
-| Multiple Faces | Additional person detected |
-| Tab Switch | Candidate leaves exam window |
+| Violation Type | Description |
+|---------------|-------------|
+| No Face Detection | Candidate leaves webcam view |
+| Multiple Face Detection | More than one person detected |
+| Tab Switch Detection | Candidate exits examination tab |
+
 
 ---
 
-## Future Improvements
+## Future Enhancements
 
-- Deep Learning Based Face Recognition
+Potential future improvements include:
+
+- Deep Learning based Face Recognition
+- Eye Gaze Tracking
 - Head Pose Estimation
-- Mobile Device Detection
+- Mobile Phone Detection
+- Audio Monitoring
 - Cloud Deployment
 - Multi-Candidate Analytics
+- Real-Time Administrator Alerts
+- AI-Based Cheating Probability Scoring
+
+---
+
+## Learning Outcomes
+
+This project demonstrates practical implementation of:
+
+- Computer Vision
+- Artificial Intelligence Monitoring
+- Flask Web Development
+- Database Management
+- Data Visualization
+- Automated Report Generation
+- Real-Time Detection Systems
+- Full-Stack Application Development
+
+---
+
+## Conclusion
+
+ExamGuard AI provides a complete AI-powered online examination monitoring solution capable of verifying candidate identity, monitoring behavior in real time, detecting suspicious activities, collecting evidence, generating reports, and providing administrators with actionable insights through an interactive dashboard.
+
+The project demonstrates the integration of Artificial Intelligence, Computer Vision, Web Development, and Data Analytics to address real-world challenges in remote examinations.
 
 ---
 
 ## Author
 
-**Srijan Akshit**
+### Srijan Akshit
 
-AI & Computer Vision Project
+**ExamGuard AI – AI-Powered Online Examination Proctoring System**
+
+Built using Python, Flask, OpenCV, SQLite, ReportLab, HTML, CSS, JavaScript, and Chart.js.
 
 
 ## Privacy Notice
